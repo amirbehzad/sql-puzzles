@@ -2,8 +2,7 @@
 
 Consider the following table:
 
-
-```
+```sql
 CREATE TABLE billing_history (
   id INT NOT NULL AUTO_INCREMENT,
   subscription_id INT NOT NULL,
@@ -15,8 +14,8 @@ CREATE TABLE billing_history (
 
 Find pair of subscription_ids and their last successfull bill's date, limited to subscriptions that their billing has been failed within last seven days, and filter the results to subscription_ids that their last successfull bill date lies before past three months. This covers subscriptions that were billable more than three months ago, but in the last seven days were not billed.
 
-## Solution
-```
+### Solution
+```sql
 SELECT
 	subscription_id,
 	DATE(MAX(CASE WHEN is_billed = TRUE THEN bill_date ELSE NULL END)) last_success_billed
